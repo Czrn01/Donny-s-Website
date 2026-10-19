@@ -92,6 +92,10 @@ button{font:600 1rem Inter,system-ui,sans-serif;border-radius:4px;padding:.8rem 
 #done h2{font-size:2rem;margin-bottom:.5rem}
 dl{display:grid;grid-template-columns:max-content 1fr;gap:.4rem 1.25rem;margin:1.25rem 0}
 dt{color:var(--muted)} dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+
+/* small helper for top/back link */
+.top-actions{display:flex;gap:.5rem;align-items:center;margin-top:1rem}
+.top-actions .ghost{padding:.6rem .9rem;border-radius:6px;border:1px solid var(--line);font-weight:600}
 </style>
 </head>
 <body>
@@ -99,6 +103,11 @@ dt{color:var(--muted)} dd{margin:0;font-weight:600;overflow-wrap:anywhere}
 <div id="formView">
   <h1>Become a member</h1>
   <p class="lede">Join [Your Gym] in a few minutes. Fields marked with * are required. We review applications within 5 business days.</p>
+
+  <!-- Back to home button for users who don't want to continue -->
+  <div class="top-actions">
+    <button type="button" class="ghost" onclick="location.href='index.html'">← Back to home</button>
+  </div>
 
   <form id="app" novalidate>
     <fieldset>
@@ -194,6 +203,8 @@ dt{color:var(--muted)} dd{margin:0;font-weight:600;overflow-wrap:anywhere}
     <div class="actions">
       <button type="submit" class="primary">Submit application</button>
       <button type="reset" class="ghost">Clear form</button>
+      <!-- Back to home button for users who want to leave the form -->
+      <button type="button" class="ghost" onclick="location.href='index.html'">Cancel and return home</button>
     </div>
   </form>
 </div>
@@ -203,7 +214,11 @@ dt{color:var(--muted)} dd{margin:0;font-weight:600;overflow-wrap:anywhere}
     <h2 id="cTitle">Confirm your choices</h2>
     <p class="sub">Please check your selections before submitting.</p>
     <dl><dt>Membership plan</dt><dd id="cPlan"></dd><dt>Gym access</dt><dd id="cGym"></dd></dl>
-    <div class="actions"><button type="button" class="ghost" id="cBack">Go back and edit</button><button type="button" class="primary" id="cOk">Confirm and submit</button></div>
+    <div class="actions">
+      <button type="button" class="ghost" id="cBack">Go back and edit</button>
+      <button type="button" class="ghost" id="cCancelHome" onclick="location.href='index.html'">Cancel and go home</button>
+      <button type="button" class="primary" id="cOk">Confirm and submit</button>
+    </div>
   </div>
 </div>
 
@@ -238,7 +253,11 @@ dt{color:var(--muted)} dd{margin:0;font-weight:600;overflow-wrap:anywhere}
   <h3>After you pay</h3>
   <p class="note" style="margin-top:0">Send your proof of payment, with your reference number, to <strong>[payment email address]</strong>.</p>
   <p class="note" id="idNote" hidden>Your gym access rate requires a valid ID. Please bring it on your first visit.</p>
-  <div class="actions"><button class="ghost" id="again">Start a new application</button></div>
+  <div class="actions">
+    <button class="ghost" id="again">Start a new application</button>
+    <!-- Back to home button in the confirmation/done view -->
+    <button class="primary" onclick="location.href='index.html'">Back to home</button>
+  </div>
 </section>
 </main>
 
