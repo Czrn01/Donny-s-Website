@@ -8,62 +8,190 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@500;600;700;800&family=Oswald:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Inline styles for the membership/wireframe section -->
+<style>
+/* Basic membership styles kept local to avoid touching your main stylesheet */
+.membership-section{display:none;background:#0B0B0B;color:#fff;padding:40px 0}
+.membership-wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.membership-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.membership-title{font-family:Oswald, sans-serif;letter-spacing:1px;font-weight:700}
+.plans{display:flex;gap:18px;flex-wrap:wrap}
+.plan{background:linear-gradient(180deg,#151616,#1a1b1c);padding:22px;border-radius:12px;width:300px;border:1px solid rgba(255,255,255,0.04)}
+.plan.popular{background:linear-gradient(180deg,#E23B3B,#FF6B4A);color:#fff;transform:translateY(-6px)}
+.plan h4{font-family:Montserrat,sans-serif;margin:0 0 8px 0;font-size:13px}
+.plan .price{font-family:Montserrat,sans-serif;font-weight:800;font-size:28px;margin:6px 0}
+.plan p{color:rgba(255,255,255,0.9);margin:0 0 12px 0;font-size:13px}
+.plan ul{list-style:none;padding:0;margin:10px 0 0 0}
+.plan li{margin:8px 0;font-size:13px}
+.join-btn{display:inline-block;padding:10px 16px;border-radius:6px;border:2px solid rgba(255,255,255,0.12);background:transparent;color:inherit;font-weight:700;cursor:pointer}
+.join-btn.popular{background:rgba(255,255,255,0.12)}
+.membership-access{margin-top:20px;background:#141414;padding:16px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+.membership-access table{width:100%;border-collapse:collapse;color:#cfcfcf}
+.membership-access th,.membership-access td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
+.back-row{display:flex;gap:10px;margin-top:18px;align-items:center}
+.btn-back{padding:10px 14px;border-radius:6px;border:2px solid rgba(255,255,255,0.08);background:transparent;color:#fff;cursor:pointer}
+.btn-checkout{padding:10px 14px;border-radius:6px;background:#C8102E;color:#fff;border:none;cursor:pointer}
+@media (max-width:900px){.plans{flex-direction:column}.plan{width:100%}}
+</style>
 </head>
 <body>
-<section class="band " style="background:#0D0D0D;height:707px;"><div class="stage" style="width:1440px;height:707px">
-<a class="a" href="index.html" style="left:80px;top:29.6px;font:400 38px/50px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase">Donny’s Workout and Healthiness<span style="color:#C8102E">.</span></a>
-<a class="a" href="menu.html" style="left:740px;top:38.5px;font:400 18px/24px 'Inter',system-ui,sans-serif;color:#F2EFE8;white-space:nowrap">Menu</a>
-<a class="a" href="workouts.html" style="left:830px;top:38.5px;font:400 18px/24px 'Inter',system-ui,sans-serif;color:#F2EFE8;white-space:nowrap">Workouts</a>
-<a class="a" href="about.html" style="left:950px;top:38.5px;font:400 18px/24px 'Inter',system-ui,sans-serif;color:#F2EFE8;white-space:nowrap">About</a>
-<a class="a" href="about.html" style="left:1040px;top:38.5px;font:400 18px/24px 'Inter',system-ui,sans-serif;color:#F2EFE8;white-space:nowrap">Contact</a>
-<a class="a btn" href="menu.html" style="left:1180px;top:26px;width:180px;height:52px;line-height:52px;background:#C8102E;color:#F2EFE8;font:400 18px/52px 'Inter',system-ui,sans-serif;border-radius:4px;text-align:center">Order now</a>
-<div class="a "  style="left:0px;top:102px;width:1440px;height:1px;background:#1F1F1F"></div>
-<div class="a " style="left:80px;top:209.8px;font:400 16px/20px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;">WORKOUT AND HEALTHY KITCHEN</div>
-<div class="a " style="left:79px;top:253.7px;font:700 104px/111px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase;">TRAIN HARD.<br>EAT CLEAN.</div>
-<div class="a " style="left:80px;top:501.5px;font:400 18px/22px 'Inter',system-ui,sans-serif;color:#8A8A8A;white-space:nowrap;">High-protein meals and a gym floor, under one roof.</div>
-<a class="a " href="menu.html" style="left:80px;top:562px;width:176px;height:64px;background:#C8102E;border-radius:4px;color:#F2EFE8;font:400 18px/64px 'Inter',system-ui,sans-serif;text-align:center">Order now</a>
-<a class="a " href="menu.html" style="left:272px;top:562px;width:176px;height:64px;border:2px solid #F2EFE8;border-radius:4px;box-sizing:border-box;color:#F2EFE8;font:400 18px/60px 'Inter',system-ui,sans-serif;text-align:center">View menu</a>
-<img class="a" src="images/hero-food.jpg" alt="Healthy food and dumbbells" style="left:720px;top:162px;width:624px;height:416px;">
-</div></section><section class="band " style="background:#F2EFE8;height:517px;"><div class="stage" style="width:1440px;height:517px">
-<div class="a " style="left:85px;top:16.2px;font:400 48px/60px 'Oswald','Arial Narrow',sans-serif;color:#0D0D0D;white-space:nowrap;text-transform:uppercase;">BEST SELLERS</div>
-<div class="a " style="left:1246px;top:62.5px;font:400 18px/22px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;left:auto;right:80px;">See full menu</div>
-<div class="a "  style="left:80px;top:134px;width:400px;height:323px;background:#fff;border-radius:8px"></div>
-<img class="a" src="images/home-french-toasts.jpg" alt="French Toasts" style="left:100px;top:155px;width:360px;height:180px;">
-<div class="a " style="left:100px;top:351.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#0D0D0D;white-space:nowrap;">French Toasts</div>
-<div class="a " style="left:101px;top:399.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;">₱160.00</div>
-<div class="a "  style="left:330px;top:397px;width:130px;height:34px;background:#E3F4E4;border-radius:4px;color:#195E1F;font:400 14px/34px 'Inter',system-ui,sans-serif;text-align:center">16g protein</div>
-<div class="a "  style="left:520px;top:134px;width:400px;height:323px;background:#fff;border-radius:8px"></div>
-<img class="a" src="images/home-ribeye-steak.jpg" alt="Rib-eye Steak" style="left:540px;top:155px;width:360px;height:180px;">
-<div class="a " style="left:540px;top:351.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#0D0D0D;white-space:nowrap;">Rib-eye Steak</div>
-<div class="a " style="left:541px;top:399.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;">₱1,235.00</div>
-<div class="a "  style="left:770px;top:397px;width:130px;height:34px;background:#E3F4E4;border-radius:4px;color:#195E1F;font:400 14px/34px 'Inter',system-ui,sans-serif;text-align:center">55g protein</div>
-<div class="a "  style="left:960px;top:134px;width:400px;height:323px;background:#fff;border-radius:8px"></div>
-<img class="a" src="images/home-special-shrimp.jpg" alt="Special Shrimp" style="left:980px;top:155px;width:360px;height:180px;">
-<div class="a " style="left:980px;top:351.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#0D0D0D;white-space:nowrap;">Special Shrimp</div>
-<div class="a " style="left:981px;top:399.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;">₱310.00</div>
-<div class="a "  style="left:1210px;top:397px;width:130px;height:34px;background:#E3F4E4;border-radius:4px;color:#195E1F;font:400 14px/34px 'Inter',system-ui,sans-serif;text-align:center">35 g protein</div>
-</div></section><section class="band " style="background:#0D0D0D;height:410px;"><div class="stage" style="width:1440px;height:410px">
-<div class="a "  style="left:82px;top:43px;width:400px;height:217px;border:1px solid #292929;border-radius:8px;box-sizing:border-box"></div>
-<img class="a" src="images/icon-dumbbell.png" alt="" style="left:110px;top:83px;width:47px;height:34px;">
-<div class="a " style="left:109px;top:153.5px;font:400 28px/35px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase;">DAY PASS</div>
-<div class="a " style="left:110px;top:201.7px;font:400 17px/21px 'Inter',system-ui,sans-serif;color:#8A8A8A;white-space:nowrap;">Walk in and train</div>
-<div class="a "  style="left:522px;top:43px;width:400px;height:217px;border:1px solid #292929;border-radius:8px;box-sizing:border-box"></div>
-<img class="a" src="images/icon-calendar.png" alt="" style="left:553px;top:73px;width:41px;height:41px;">
-<div class="a " style="left:549px;top:153.5px;font:400 28px/35px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase;">MONTHLY</div>
-<div class="a " style="left:550px;top:201.7px;font:400 17px/21px 'Inter',system-ui,sans-serif;color:#8A8A8A;white-space:nowrap;">Unlimited access</div>
-<div class="a "  style="left:962px;top:43px;width:400px;height:217px;border:1px solid #292929;border-radius:8px;box-sizing:border-box"></div>
-<img class="a" src="images/icon-user.png" alt="" style="left:996px;top:80px;width:34px;height:44px;">
-<div class="a " style="left:989px;top:153.5px;font:400 28px/35px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase;">COACHING</div>
-<div class="a " style="left:990px;top:201.7px;font:400 17px/21px 'Inter',system-ui,sans-serif;color:#8A8A8A;white-space:nowrap;">One-on-one sessions</div>
-<div class="a "  style="left:0px;top:302px;width:1440px;height:1px;background:#232323"></div>
-<div class="a " style="left:80px;top:343.8px;font:400 16px/20px 'Inter',system-ui,sans-serif;color:#8B8B8B;white-space:nowrap;">Open daily, 6 AM to 10 PM</div>
-<div class="a "  style="left:1280px;top:338px;width:32px;height:36px;background:#F2EFE8;border-radius:50%"></div>
-<div class="a "  style="left:1320px;top:338px;width:32px;height:36px;background:#F2EFE8;border-radius:50%"></div>
-<div class="a "  style="left:1360px;top:338px;width:32px;height:36px;background:#F2EFE8;border-radius:50%"></div>
-</div></section>
+<section class="band " style="background:#0D0D0D;height:707px;">
+  <div class="stage" style="width:1440px;height:707px">
+    <a class="a" href="index.html" style="left:80px;top:29.6px;font:400 38px/50px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase">Donny’s Workout and Healthiness<span style="color:#C8102E">.</span></a>
+    <a class="a" href="menu.html" style="left:740px;top:38.5px;font:400 18px/24px 'Inter',system-ui,sans-serif;color:#F2EFE8;white-space:nowrap">Menu</a>
+    <a class="a" href="workouts.html" style="left:830px;top:38.5px;font:400 18px/24px 'Inter',system-ui,sans-serif;color:#F2EFE8;white-space:nowrap">Workouts</a>
+    <a class="a" href="about.html" style="left:950px;top:38.5px;font:400 18px/24px 'Inter',system-ui,sans-serif;color:#F2EFE8;white-space:nowrap">About</a>
+    <a class="a" href="about.html" style="left:1040px;top:38.5px;font:400 18px/24px 'Inter',system-ui,sans-serif;color:#F2EFE8;white-space:nowrap">Contact</a>
+    <!-- Order now now opens membership instead of menu -->
+    <a class="a btn" href="#" id="order-now-main" onclick="event.preventDefault(); showMembership('index');" style="left:1180px;top:26px;width:180px;height:52px;line-height:52px;background:#C8102E;color:#F2EFE8;font:400 18px/52px 'Inter',system-ui,sans-serif;border-radius:4px;text-align:center">Order now</a>
+
+    <div class="a "  style="left:0px;top:102px;width:1440px;height:1px;background:#1F1F1F"></div>
+    <div class="a " style="left:80px;top:209.8px;font:400 16px/20px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;">WORKOUT AND HEALTHY KITCHEN</div>
+    <div class="a " style="left:79px;top:253.7px;font:700 104px/111px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase;">TRAIN HARD.<br>EAT CLEAN.</div>
+    <div class="a " style="left:80px;top:501.5px;font:400 18px/22px 'Inter',system-ui,sans-serif;color:#8A8A8A;white-space:nowrap;">High-protein meals and a gym floor, under one roof.</div>
+    <!-- This Order now opens membership -->
+    <a class="a " href="#" onclick="event.preventDefault(); showMembership('index');" style="left:80px;top:562px;width:176px;height:64px;background:#C8102E;border-radius:4px;color:#F2EFE8;font:400 18px/64px 'Inter',system-ui,sans-serif;text-align:center">Order now</a>
+    <a class="a " href="menu.html" style="left:272px;top:562px;width:176px;height:64px;border:2px solid #F2EFE8;border-radius:4px;box-sizing:border-box;color:#F2EFE8;font:400 18px/60px 'Inter',system-ui,sans-serif;text-align:center">View menu</a>
+    <img class="a" src="images/hero-food.jpg" alt="Healthy food and dumbbells" style="left:720px;top:162px;width:624px;height:416px;">
+  </div>
+</section>
+
+<section class="band " style="background:#F2EFE8;height:517px;">
+  <div class="stage" style="width:1440px;height:517px">
+    <div class="a " style="left:85px;top:16.2px;font:400 48px/60px 'Oswald','Arial Narrow',sans-serif;color:#0D0D0D;white-space:nowrap;text-transform:uppercase;">BEST SELLERS</div>
+    <div class="a " style="left:1246px;top:62.5px;font:400 18px/22px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;left:auto;right:80px;">See full menu</div>
+    <div class="a "  style="left:80px;top:134px;width:400px;height:323px;background:#fff;border-radius:8px"></div>
+    <img class="a" src="images/home-french-toasts.jpg" alt="French Toasts" style="left:100px;top:155px;width:360px;height:180px;">
+    <div class="a " style="left:100px;top:351.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#0D0D0D;white-space:nowrap;">French Toasts</div>
+    <div class="a " style="left:101px;top:399.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;">₱160.00</div>
+    <div class="a "  style="left:330px;top:397px;width:130px;height:34px;background:#E3F4E4;border-radius:4px;color:#195E1F;font:400 14px/34px 'Inter',system-ui,sans-serif;text-align:center">16g protein</div>
+    <div class="a "  style="left:520px;top:134px;width:400px;height:323px;background:#fff;border-radius:8px"></div>
+    <img class="a" src="images/home-ribeye-steak.jpg" alt="Rib-eye Steak" style="left:540px;top:155px;width:360px;height:180px;">
+    <div class="a " style="left:540px;top:351.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#0D0D0D;white-space:nowrap;">Rib-eye Steak</div>
+    <div class="a " style="left:541px;top:399.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;">₱1,235.00</div>
+    <div class="a "  style="left:770px;top:397px;width:130px;height:34px;background:#E3F4E4;border-radius:4px;color:#195E1F;font:400 14px/34px 'Inter',system-ui,sans-serif;text-align:center">55g protein</div>
+    <div class="a "  style="left:960px;top:134px;width:400px;height:323px;background:#fff;border-radius:8px"></div>
+    <img class="a" src="images/home-special-shrimp.jpg" alt="Special Shrimp" style="left:980px;top:155px;width:360px;height:180px;">
+    <div class="a " style="left:980px;top:351.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#0D0D0D;white-space:nowrap;">Special Shrimp</div>
+    <div class="a " style="left:981px;top:399.0px;font:400 22px/28px 'Inter',system-ui,sans-serif;color:#C8102E;white-space:nowrap;">₱310.00</div>
+    <div class="a "  style="left:1210px;top:397px;width:130px;height:34px;background:#E3F4E4;border-radius:4px;color:#195E1F;font:400 14px/34px 'Inter',system-ui,sans-serif;text-align:center">35 g protein</div>
+  </div>
+</section>
+
+<section class="band " style="background:#0D0D0D;height:410px;">
+  <div class="stage" style="width:1440px;height:410px">
+    <div class="a "  style="left:82px;top:43px;width:400px;height:217px;border:1px solid #292929;border-radius:8px;box-sizing:border-box"></div>
+    <img class="a" src="images/icon-dumbbell.png" alt="" style="left:110px;top:83px;width:47px;height:34px;">
+    <div class="a " style="left:109px;top:153.5px;font:400 28px/35px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase;">DAY PASS</div>
+    <div class="a " style="left:110px;top:201.7px;font:400 17px/21px 'Inter',system-ui,sans-serif;color:#8A8A8A;white-space:nowrap;">Walk in and train</div>
+    <div class="a "  style="left:522px;top:43px;width:400px;height:217px;border:1px solid #292929;border-radius:8px;box-sizing:border-box"></div>
+    <img class="a" src="images/icon-calendar.png" alt="" style="left:553px;top:73px;width:41px;height:41px;">
+    <div class="a " style="left:549px;top:153.5px;font:400 28px/35px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase;">MONTHLY</div>
+    <div class="a " style="left:550px;top:201.7px;font:400 17px/21px 'Inter',system-ui,sans-serif;color:#8A8A8A;white-space:nowrap;">Unlimited access</div>
+    <div class="a "  style="left:962px;top:43px;width:400px;height:217px;border:1px solid #292929;border-radius:8px;box-sizing:border-box"></div>
+    <img class="a" src="images/icon-user.png" alt="" style="left:996px;top:80px;width:34px;height:44px;">
+    <div class="a " style="left:989px;top:153.5px;font:400 28px/35px 'Oswald','Arial Narrow',sans-serif;color:#F2EFE8;white-space:nowrap;text-transform:uppercase;">COACHING</div>
+    <div class="a " style="left:990px;top:201.7px;font:400 17px/21px 'Inter',system-ui,sans-serif;color:#8A8A8A;white-space:nowrap;">One-on-one sessions</div>
+    <div class="a "  style="left:0px;top:302px;width:1440px;height:1px;background:#232323"></div>
+    <div class="a " style="left:80px;top:343.8px;font:400 16px/20px 'Inter',system-ui,sans-serif;color:#8B8B8B;white-space:nowrap;">Open daily, 6 AM to 10 PM</div>
+    <div class="a "  style="left:1280px;top:338px;width:32px;height:36px;background:#F2EFE8;border-radius:50%"></div>
+    <div class="a "  style="left:1320px;top:338px;width:32px;height:36px;background:#F2EFE8;border-radius:50%"></div>
+    <div class="a "  style="left:1360px;top:338px;width:32px;height:36px;background:#F2EFE8;border-radius:50%"></div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP / WIREFRAMED_WORKOUT SECTION (hidden by default) -->
+<section id="membership" class="membership-section" aria-hidden="true">
+  <div class="membership-wrap">
+    <div class="membership-header">
+      <div class="membership-title">DONNY'S WORKOUT AND HEALTHINESS<span style="color:#C8102E">.</span></div>
+      <div>
+        <button class="btn-back" onclick="hideMembership('index')">← Back</button>
+        <button class="btn-checkout" onclick="alert('Checkout placeholder')">Checkout</button>
+      </div>
+    </div>
+
+    <h2 style="font-family:Oswald, sans-serif;margin:8px 0 18px 0">CHOOSE YOUR MEMBERSHIP PLAN</h2>
+
+    <div class="plans" role="list">
+      <div class="plan" role="listitem">
+        <h4>PREMIUM MEMBERSHIP</h4>
+        <div class="price">₱299 <span style="font-size:12px;color:#D6D6D6">for 3 Months</span></div>
+        <p style="color:#d6d6d6">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <ul>
+          <li>✓ All Service With Us</li>
+          <li>✓ All Service With Us</li>
+          <li>✓ All Service With Us</li>
+        </ul>
+        <button class="join-btn" onclick="alert('Selected Premium — checkout placeholder')">Join Now</button>
+      </div>
+
+      <div class="plan popular" role="listitem">
+        <h4>PLATINUM MEMBERSHIP</h4>
+        <div class="price">₱899 <span style="font-size:12px;color:rgba(255,255,255,0.95)">for 9 Months</span></div>
+        <p>Premium support, priority booking and access.</p>
+        <ul>
+          <li>✓ All Service With Us</li>
+          <li>✓ All Service With Us</li>
+          <li>✓ All Service With Us</li>
+        </ul>
+        <button class="join-btn popular" onclick="alert('Selected Platinum — checkout placeholder')">Join Now</button>
+      </div>
+
+      <div class="plan" role="listitem">
+        <h4>GOLD MEMBERSHIP</h4>
+        <div class="price">₱499 <span style="font-size:12px;color:#D6D6D6">for 6 Months</span></div>
+        <p style="color:#d6d6d6">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <ul>
+          <li>✓ All Service With Us</li>
+          <li>✓ All Service With Us</li>
+          <li>✓ All Service With Us</li>
+        </ul>
+        <button class="join-btn" onclick="alert('Selected Gold — checkout placeholder')">Join Now</button>
+      </div>
+    </div>
+
+    <div class="membership-access">
+      <h3 style="margin:0 0 8px 0;font-family:Montserrat, sans-serif">GET YOUR GYM ACCESS NOW</h3>
+      <p style="color:#cfcfcf;margin:0 0 12px 0">Pay-per-visit and short-term rates</p>
+      <table aria-label="Access pricing">
+        <thead>
+          <tr><th>Access</th><th>Students</th><th>Member</th><th>Non-member</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monthly</td><td>₱700</td><td>₱800</td><td>₱1,000</td></tr>
+          <tr><td>Weekly</td><td>₱300</td><td>₱300</td><td>₱350</td></tr>
+          <tr><td>Daily</td><td>₱100</td><td>₱100</td><td>₱100</td></tr>
+        </tbody>
+      </table>
+      <div style="color:#bfbfbf;margin-top:10px">Note: Gym access fees are separate from the membership plans above and are not included in the Premium, Gold, or Platinum prices. Member and student rates require a valid ID.</div>
+    </div>
+
+    <div class="back-row">
+      <button class="btn-back" onclick="hideMembership('index')">← Back to site</button>
+      <button class="btn-checkout" onclick="alert('Checkout placeholder')">Go to Checkout</button>
+    </div>
+  </div>
+</section>
+
 <script>
 /* scale the page so the design always fits the screen width */
 (function(){function fit(){document.body.style.zoom=document.documentElement.clientWidth/1440;}fit();window.addEventListener('resize',fit);})();
+
+/* show/hide membership — parameter tells which page invoked it (for future routing) */
+function showMembership(origin){
+  document.getElementById('membership').style.display = 'block';
+  document.getElementById('membership').setAttribute('aria-hidden','false');
+  // hide the main page content visually by scrolling to top and optionally hiding bands
+  // simplest: scroll to membership
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function hideMembership(origin){
+  document.getElementById('membership').style.display = 'none';
+  document.getElementById('membership').setAttribute('aria-hidden','true');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 </script>
 </body>
 </html>
