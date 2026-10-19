@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Membership Application</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d0d; --surface:#15171a; --card:#1d2023; --field:#101214; --ink:#f3efe6; --muted:#a3a7ab; --line:#33373b;
+  --red:#c8102e; --orange:#f26a3d; --error:#ff7a7a;
+  box-sizing:border-box; color-scheme:dark;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:62rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+h1,h2,legend{font-family:Oswald,"Arial Narrow",Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;margin:0}
+h1{font-size:clamp(2rem,6vw,3rem);line-height:1.1}
+h1::before{content:"";display:block;width:5.5rem;height:2px;background:var(--red);margin-bottom:.9rem}
+.lede{color:var(--muted);max-width:38rem;margin:.75rem 0 2rem}
+fieldset{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.5rem 1.25rem 1.25rem;margin:0 0 1.25rem;min-width:0}
+legend{font-size:1.45rem;padding:0 .5rem;margin-left:-.5rem}
+.grid{display:grid;gap:1rem;grid-template-columns:1fr 1fr}
+.full{grid-column:1/-1}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+label,.lbl{display:block;font-weight:600;font-size:.92rem;margin-bottom:.3rem}
+.opt{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=tel],input[type=date],select{
+  width:100%;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:6px;padding:.65rem .75rem;color-scheme:dark}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.err{color:var(--error);font-size:.85rem;margin:.4rem 0 0;display:none}
+.invalid input:not([type=radio]),.invalid select{border-color:var(--error)}
+.invalid .err{display:block}
+
+/* Plans */
+.plans{display:grid;gap:1rem;grid-template-columns:repeat(3,1fr);padding-top:1.1rem}
+@media (max-width:760px){.plans{grid-template-columns:1fr;padding-top:0}}
+.plan{position:relative;display:block;margin:0;font-weight:400;font-size:1rem}
+.plan.featured{margin-top:-1.1rem}
+@media (max-width:760px){.plan.featured{margin-top:0}}
+.plan input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:1}
+.card{display:flex;flex-direction:column;height:100%;border:1.5px solid var(--line);border-radius:12px;padding:1.5rem 1.25rem;background:var(--card)}
+.featured .card{background:linear-gradient(180deg,#24272a 0%,#5b1a28 42%,var(--red) 100%);border-color:#5b1a28;padding-top:1.9rem}
+.pname{font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.02em;padding-bottom:.75rem;border-bottom:1px solid rgba(243,239,230,.3)}
+.price{display:block;font-weight:800;font-size:2.6rem;line-height:1;margin:1.4rem 0 .9rem}
+.price small{font-size:.85rem;font-weight:700;color:var(--orange);margin-left:.4rem}
+.desc{color:rgba(243,239,230,.7);font-size:.82rem;margin:0 0 1.1rem}
+.perks{list-style:none;padding:0;margin:0 0 1.5rem;font-size:.85rem}
+.perks li{display:flex;gap:.6rem;margin:.55rem 0}
+.perks li::before{content:"✓";color:var(--orange);font-weight:700}
+.featured .perks li::before{color:#fff}
+.pick{margin-top:auto;text-align:center;font-weight:600;border:1.5px solid var(--orange);color:var(--ink);padding:.7rem 1rem;border-radius:3px}
+.featured .pick{background:var(--orange);border-color:var(--orange);color:#fff}
+.pick::before{content:"Select plan"}
+.plan input:checked+.card{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange)}
+.plan input:checked+.card .pick{background:var(--orange);color:#fff}
+.plan input:checked+.card .pick::before{content:"Selected"}
+.plan input:focus-visible+.card{outline:3px solid #fff;outline-offset:3px}
+.sum{margin:1.1rem 0 0;font-weight:600}
+.sum span{color:var(--orange)}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:calc(1.25rem + env(safe-area-inset-top,0px)) 1.25rem calc(1.25rem + env(safe-area-inset-bottom,0px));z-index:50}
+#done h3{font-family:Oswald,"Arial Narrow",Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:1.3rem;margin:1.75rem 0 .75rem}
+.amt{color:var(--orange);font-weight:800;font-size:1.25rem}
+.method{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem 1.1rem;margin:0 0 .75rem}
+.method h4{margin:0 0 .4rem;font-size:1rem}
+.method ol{margin:0;padding-left:1.2rem;color:var(--muted);font-size:.92rem}
+.method li{margin:.3rem 0}
+.method strong{color:var(--ink)}
+.overlay[hidden]{display:none}
+.dlg{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.75rem 1.5rem;max-width:30rem;width:100%}
+.dlg h2{font-size:1.6rem;margin-bottom:.4rem}
+.dlg .sub{margin:0 0 .5rem}
+.sub{color:var(--muted);margin:-.25rem 0 1rem}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;min-width:28rem}
+th{background:var(--card);color:var(--muted);font-size:.8rem;font-weight:400;text-align:left;padding:.7rem 1rem}
+td{padding:.85rem 1rem;border-top:1px solid var(--line)}
+td.hit{color:var(--orange);font-weight:700}
+.note{color:var(--muted);font-size:.85rem;margin:.9rem 0 0}
+.check{display:flex;gap:.65rem;align-items:flex-start;font-weight:400;margin:.6rem 0}
+.check input{margin-top:.3rem;width:1.1rem;height:1.1rem;accent-color:var(--red);flex:none}
+a{color:var(--orange)}
+.actions{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-top:1.5rem}
+button{font:600 1rem Inter,system-ui,sans-serif;border-radius:4px;padding:.8rem 1.6rem;cursor:pointer;border:1.5px solid var(--orange)}
+.primary{background:var(--orange);color:#fff}
+.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+#done{display:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:2rem 1.5rem;max-width:40rem}
+#done h2{font-size:2rem;margin-bottom:.5rem}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:.4rem 1.25rem;margin:1.25rem 0}
+dt{color:var(--muted)} dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div id="formView">
+  <h1>Become a member</h1>
+  <p class="lede">Join [Your Gym] in a few minutes. Fields marked with * are required. We review applications within 5 business days.</p>
+
+  <form id="app" novalidate>
+    <fieldset>
+      <legend>Choose your membership plan</legend>
+      <div class="field">
+        <div class="plans" role="radiogroup" aria-label="Membership plan">
+          <label class="plan">
+            <input type="radio" name="plan" value="Premium Membership" data-price="₱299" data-term="3 months" required>
+            <span class="card">
+              <span class="pname">Premium Membership</span>
+              <span class="price">₱299<small>for 3 Months</small></span>
+              <p class="desc">Add your plan description here.</p>
+              <ul class="perks"><li>All services with us</li><li>All services with us</li><li>All services with us</li></ul>
+              <span class="pick"></span>
+            </span>
+          </label>
+          <label class="plan featured">
+            <input type="radio" name="plan" value="Platinum Membership" data-price="₱899" data-term="9 months" required>
+            <span class="card">
+              <span class="pname">Platinum Membership</span>
+              <span class="price">₱899<small>for 9 Months</small></span>
+              <p class="desc">Add your plan description here.</p>
+              <ul class="perks"><li>All services with us</li><li>All services with us</li><li>All services with us</li></ul>
+              <span class="pick"></span>
+            </span>
+          </label>
+          <label class="plan">
+            <input type="radio" name="plan" value="Gold Membership" data-price="₱499" data-term="6 months" required>
+            <span class="card">
+              <span class="pname">Gold Membership</span>
+              <span class="price">₱499<small>for 6 Months</small></span>
+              <p class="desc">Add your plan description here.</p>
+              <ul class="perks"><li>All services with us</li><li>All services with us</li><li>All services with us</li></ul>
+              <span class="pick"></span>
+            </span>
+          </label>
+        </div>
+        <p class="err">Select a membership plan to continue.</p>
+        <p class="sum" id="sum" hidden>Your plan: <span id="sumText"></span></p>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Get your gym access</legend>
+      <p class="sub">Pay-per-visit and short-term rates.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Access</th><th>Students</th><th>Member</th><th>Non-member</th></tr></thead>
+        <tbody>
+          <tr data-a="Monthly"><td>Monthly</td><td data-r="Student">₱700</td><td data-r="Member">₱800</td><td data-r="Non-member">₱1,000</td></tr>
+          <tr data-a="Weekly"><td>Weekly</td><td data-r="Student">₱300</td><td data-r="Member">₱300</td><td data-r="Non-member">₱350</td></tr>
+          <tr data-a="Daily"><td>Daily</td><td data-r="Student">₱100</td><td data-r="Member">₱100</td><td data-r="Non-member">₱100</td></tr>
+        </tbody>
+      </table></div>
+      <div class="grid" style="margin-top:1rem">
+        <div class="field"><label for="access">Gym access pass *</label><select id="access" name="access" required><option value="" disabled selected>Select a pass</option><option>Monthly</option><option>Weekly</option><option>Daily</option></select><p class="err">Select a gym access pass.</p></div>
+        <div class="field"><label for="rate">Rate *</label><select id="rate" name="rate"><option>Member</option><option>Student</option></select></div>
+      </div>
+      <p class="sum" id="gymSum" hidden>Your pass: <span id="gymText"></span></p>
+      <p class="note">Gym access fees are separate from the membership plans above and are not included in the Premium, Gold, or Platinum prices. Member and student rates require a valid ID.</p>
+      <p class="note">Open daily, 6 AM to 10 PM.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>About you</legend>
+      <div class="grid">
+        <div class="field"><label for="first">First name *</label><input type="text" id="first" name="first" autocomplete="given-name" required><p class="err">Enter your first name.</p></div>
+        <div class="field"><label for="last">Last name *</label><input type="text" id="last" name="last" autocomplete="family-name" required><p class="err">Enter your last name.</p></div>
+        <div class="field"><label for="email">Email *</label><input type="email" id="email" name="email" autocomplete="email" required><p class="err">Enter a valid email address, like name@example.com.</p></div>
+        <div class="field"><label for="phone">Phone <span class="opt">(optional)</span></label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
+        <div class="field"><label for="dob">Date of birth *</label><input type="date" id="dob" name="dob" autocomplete="bday" required><p class="err">Enter your date of birth.</p></div>
+        <div class="field"><label for="occ">Occupation <span class="opt">(optional)</span></label><input type="text" id="occ" name="occ"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Mailing address</legend>
+      <div class="grid">
+        <div class="field full"><label for="street">Street address *</label><input type="text" id="street" name="street" autocomplete="street-address" required><p class="err">Enter your street address.</p></div>
+        <div class="field"><label for="city">City *</label><input type="text" id="city" name="city" autocomplete="address-level2" required><p class="err">Enter your city.</p></div>
+        <div class="field"><label for="region">State / Province *</label><input type="text" id="region" name="region" autocomplete="address-level1" required><p class="err">Enter your state or province.</p></div>
+        <div class="field"><label for="zip">Postal code *</label><input type="text" id="zip" name="zip" autocomplete="postal-code" required><p class="err">Enter your postal code.</p></div>
+        <div class="field"><label for="country">Country *</label><input type="text" id="country" name="country" autocomplete="country-name" required><p class="err">Enter your country.</p></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Agreements</legend>
+      <div class="field"><label class="check"><input type="checkbox" id="terms" required><span>I have read and agree to the <a href="#">membership terms</a> and <a href="#">privacy policy</a>. *</span></label><p class="err">You must accept the terms to apply.</p></div>
+      <label class="check"><input type="checkbox" id="news" name="news"><span>Send me news and offers by email.</span></label>
+      <div class="field" style="margin-top:1rem"><label for="sig">Type your full name as your signature *</label><input type="text" id="sig" name="sig" required><p class="err">Type your full name to sign.</p></div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="primary">Submit application</button>
+      <button type="reset" class="ghost">Clear form</button>
+    </div>
+  </form>
+</div>
+
+<div id="confirm" class="overlay" role="dialog" aria-modal="true" aria-labelledby="cTitle" hidden>
+  <div class="dlg">
+    <h2 id="cTitle">Confirm your choices</h2>
+    <p class="sub">Please check your selections before submitting.</p>
+    <dl><dt>Membership plan</dt><dd id="cPlan"></dd><dt>Gym access</dt><dd id="cGym"></dd></dl>
+    <div class="actions"><button type="button" class="ghost" id="cBack">Go back and edit</button><button type="button" class="primary" id="cOk">Confirm and submit</button></div>
+  </div>
+</div>
+
+<section id="done" aria-live="polite">
+  <h2>Application received</h2>
+  <p><strong>Next step: payment.</strong> Pay your total using one of the methods below and include your reference number so we can match it to your application.</p>
+  <p>Thank you, <span id="dName"></span>. We’ll email a decision to <strong id="dEmail"></strong> within 5 business days.</p>
+  <dl>
+    <dt>Reference</dt><dd id="dRef"></dd>
+    <dt>Plan</dt><dd id="dPlan"></dd>
+    <dt>Plan fee</dt><dd id="dFee"></dd>
+    <dt>Gym access</dt><dd id="dGym"></dd>
+    <dt>Total to pay</dt><dd class="amt" id="dTotal"></dd>
+    <dt>Submitted</dt><dd id="dDate"></dd>
+  </dl>
+  <h3>How to pay</h3>
+  <div class="method"><h4>GCash or Maya</h4><ol>
+    <li>Open the app and choose <strong>Send Money</strong>.</li>
+    <li>Send your total to <strong>[GCash / Maya number]</strong>, account name <strong>[Account name]</strong>.</li>
+    <li>Put <strong class="refTxt"></strong> in the message or notes.</li>
+    <li>Save a screenshot of the receipt.</li>
+  </ol></div>
+  <div class="method"><h4>Bank transfer</h4><ol>
+    <li>Transfer your total to <strong>[Bank name]</strong>, account number <strong>[Account number]</strong>, account name <strong>[Account name]</strong>.</li>
+    <li>Use <strong class="refTxt"></strong> as the payment reference.</li>
+    <li>Save the transfer confirmation or deposit slip.</li>
+  </ol></div>
+  <div class="method"><h4>Pay at the gym</h4><ol>
+    <li>Visit the front desk any day between 6 AM and 10 PM.</li>
+    <li>Give your reference number, <strong class="refTxt"></strong>, and pay your total.</li>
+  </ol></div>
+  <h3>After you pay</h3>
+  <p class="note" style="margin-top:0">Send your proof of payment, with your reference number, to <strong>[payment email address]</strong>.</p>
+  <p class="note" id="idNote" hidden>Your gym access rate requires a valid ID. Please bring it on your first visit.</p>
+  <div class="actions"><button class="ghost" id="again">Start a new application</button></div>
+</section>
+</main>
+
+<script>
+(function(){
+  var form=document.getElementById('app');
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function chosen(){return form.querySelector('input[name=plan]:checked')}
+  function check(el){
+    var f=el.closest('.field'); if(!f) return true;
+    var ok;
+    if(el.type==='radio') ok=!!chosen();
+    else if(el.type==='checkbox') ok=el.checked;
+    else if(el.type==='email') ok=emailRe.test(el.value.trim());
+    else ok=el.value.trim()!=='';
+    f.classList.toggle('invalid',!ok); return ok;
+  }
+  form.querySelectorAll('[required]').forEach(function(el){
+    el.addEventListener('blur',function(){if(el.type!=='radio')check(el)});
+    el.addEventListener('input',function(){if(el.closest('.field').classList.contains('invalid'))check(el)});
+    el.addEventListener('change',function(){if(el.closest('.field').classList.contains('invalid'))check(el)});
+  });
+  form.querySelectorAll('input[name=plan]').forEach(function(r){
+    r.addEventListener('change',function(){
+      document.getElementById('sumText').textContent=r.value+": "+r.dataset.price+" for "+r.dataset.term;
+      document.getElementById('sum').hidden=false;
+    });
+  });
+  var R={Monthly:{Student:700,Member:800,'Non-member':1000},Weekly:{Student:300,Member:300,'Non-member':350},Daily:{Student:100,Member:100,'Non-member':100}};
+  var acc=form.elements['access'], rate=form.elements['rate'];
+  function gymText(){
+    if(!acc.value) return 'None';
+    return acc.value+' pass, '+rate.value+' rate: ₱'+R[acc.value][rate.value].toLocaleString('en-US');
+  }
+  function gym(){
+    document.querySelectorAll('td.hit').forEach(function(t){t.classList.remove('hit')});
+    document.getElementById('gymSum').hidden=!acc.value;
+    document.getElementById('gymText').textContent=gymText();
+    if(acc.value){var c=document.querySelector('tr[data-a="'+acc.value+'"] td[data-r="'+rate.value+'"]'); if(c)c.classList.add('hit');}
+  }
+  acc.addEventListener('change',gym); rate.addEventListener('change',gym);
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var bad=null;
+    form.querySelectorAll('[required]').forEach(function(el){if(!check(el)&&!bad)bad=el});
+    if(bad){bad.focus();return}
+    openConfirm();
+  });
+  var modal=document.getElementById('confirm'), lastFocus=null;
+  function openConfirm(){
+    var p=chosen();
+    document.getElementById('cPlan').textContent=p.value+': '+p.dataset.price+' for '+p.dataset.term;
+    document.getElementById('cGym').textContent=acc.value?gymText():'No gym access pass selected';
+    lastFocus=document.activeElement; modal.hidden=false; document.getElementById('cOk').focus();
+  }
+  function closeConfirm(){modal.hidden=true; if(lastFocus)lastFocus.focus();}
+  document.getElementById('cOk').addEventListener('click',function(){modal.hidden=true;finish();});
+  document.getElementById('cBack').addEventListener('click',closeConfirm);
+  document.addEventListener('keydown',function(e){
+    if(modal.hidden)return;
+    if(e.key==='Escape'){closeConfirm();return}
+    if(e.key==='Tab'){
+      var b=document.getElementById('cBack'), o=document.getElementById('cOk');
+      if(e.shiftKey&&document.activeElement===b){o.focus();e.preventDefault()}
+      else if(!e.shiftKey&&document.activeElement===o){b.focus();e.preventDefault()}
+    }
+  });
+  function finish(){
+    var p=chosen(), d=new Date(), ref='MEM-'+d.getFullYear()+'-'+Math.floor(1000+Math.random()*9000);
+    /* TODO: send the form data (including p.value) to your server or form service here. */
+    document.getElementById('dName').textContent=form.first.value.trim();
+    document.getElementById('dEmail').textContent=form.email.value.trim();
+    document.getElementById('dRef').textContent=ref;
+    document.getElementById('dPlan').textContent=p.value;
+    document.getElementById('dFee').textContent=p.dataset.price+" for "+p.dataset.term;
+    document.getElementById('dGym').textContent=gymText();
+    var planAmt=parseInt(p.dataset.price.replace(/\D/g,''),10)||0, gymAmt=acc.value?R[acc.value][rate.value]:0;
+    document.getElementById('dTotal').textContent='₱'+(planAmt+gymAmt).toLocaleString('en-US');
+    document.querySelectorAll('.refTxt').forEach(function(n){n.textContent=ref});
+    document.getElementById('idNote').hidden=!acc.value;
+    document.getElementById('dDate').textContent=d.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+    document.getElementById('formView').style.display='none';
+    document.getElementById('done').style.display='block';
+    window.scrollTo(0,0);
+  }
+  form.addEventListener('reset',function(){
+    document.getElementById('sum').hidden=true;
+    setTimeout(gym,0);
+    form.querySelectorAll('.invalid').forEach(function(f){f.classList.remove('invalid')});
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    form.reset();
+    document.getElementById('done').style.display='none';
+    document.getElementById('formView').style.display='block';
+    window.scrollTo(0,0);
+  });
+})();
+</script>
+</body>
+</html>
